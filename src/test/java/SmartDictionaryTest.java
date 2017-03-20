@@ -1,31 +1,21 @@
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.exceptions.base.MockitoException;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.BDDMockito.willReturn;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willThrow;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-@RunWith(MockitoJUnitRunner.StrictStubs.class)
 public class SmartDictionaryTest {
 
-    <T> T strictMock(Class<T> typeToMock) {
-        return mock(typeToMock, withSettings().defaultAnswer(invocation -> {
-            throw new MockitoException("Unstubbed invocation:\n  " + invocation);
-        }));
-    }
-
-    @Mock OnlineWiki wiki = mock(OnlineWiki.class);
-    @Mock LookUpHistory history = mock(LookUpHistory.class);
-    @InjectMocks SmartDictionary dictionary;
+    OnlineWiki wiki = mock(OnlineWiki.class);
+    DictionaryHistory history = mock(DictionaryHistory.class);
+    SmartDictionary dictionary = new SmartDictionary(wiki, history);
 
     @Test
-    public void looks_up_words() throws Exception {
-        willReturn("Mocking framework").given(wiki).findDescription("mockito");
+    public void should_look_up_words() throws Exception {
+        //given
+        given(wiki.findDescription("mockito")).willReturn("Mocking framework");
 
         //when
         String description = dictionary.lookUp("mockito");
@@ -35,7 +25,7 @@ public class SmartDictionaryTest {
     }
 
     @Test
-    public void keeps_history() throws Exception {
+    public void should_keep_history() throws Exception {
         //when
         dictionary.lookUp("mockito");
 
@@ -44,10 +34,11 @@ public class SmartDictionaryTest {
     }
 
     @Test
-    public void ignores_history_failures() throws Exception {
-        willThrow(new HistoryFailure()).given(history).lookUpAttempt("mockito");
+    public void should_ignore_history_failures() throws Exception {
+        //given
+        willThrow(new HistoryFailureException()).given(history).lookUpAttempt("mockito");
 
-        //expect no exception to be thrown
+        //expect no exception thrown
         dictionary.lookUp("mockito");
     }
 }
