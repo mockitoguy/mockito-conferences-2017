@@ -8,6 +8,11 @@ import static org.mockito.Mockito.verify;
 
 public class SmartDictionaryTest {
 
+    //2 kinds of typos
+    //strict mocks example
+    //v2 - warnings, strict stubs
+    //DRY, detect unused stubs with runner
+
     OnlineWiki wiki = mock(OnlineWiki.class);
     DictionaryHistory history = mock(DictionaryHistory.class);
     SmartDictionary dictionary = new SmartDictionary(wiki, history);
