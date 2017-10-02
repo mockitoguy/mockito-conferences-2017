@@ -4,6 +4,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.mockito.quality.Strictness;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.willReturn;
@@ -35,7 +36,7 @@ public class SmartDictionaryTest {
     @Mock DictionaryHistory history;
     @InjectMocks SmartDictionary dictionary;
 
-    @Rule public MockitoRule rule = MockitoJUnit.rule();
+    @Rule public MockitoRule rule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
 
     @Test public void should_look_up_words() throws Exception {
         //given
@@ -47,7 +48,6 @@ public class SmartDictionaryTest {
         //then
         assertEquals("Mocking framework", description);
 
-        verify(wiki).findDescription("mockito");
         verifyNoMoreInteractions(wiki);
     }
 
