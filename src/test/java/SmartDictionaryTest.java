@@ -1,10 +1,8 @@
-import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-import org.mockito.quality.Strictness;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.willReturn;
@@ -30,13 +28,12 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  *  - add verifyNoMoreInteractions(wiki) to "should_look_up_words" - DRY
  *  - can use MockitoJUnitRunner or without rule/runner, too
  */
+@RunWith(MockitoJUnitRunner.StrictStubs.class)
 public class SmartDictionaryTest {
 
     @Mock OnlineWiki wiki;
     @Mock DictionaryHistory history;
     @InjectMocks SmartDictionary dictionary;
-
-    @Rule public MockitoRule rule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
 
     @Test public void should_look_up_words() throws Exception {
         //given
