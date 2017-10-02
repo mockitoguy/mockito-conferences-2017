@@ -4,12 +4,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.mockito.quality.Strictness;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.BDDMockito.willThrow;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * 1. Mistakes that steal productivity
@@ -35,11 +35,10 @@ public class SmartDictionaryTest {
     @Mock DictionaryHistory history;
     @InjectMocks SmartDictionary dictionary;
 
-    @Rule public MockitoRule rule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
+    @Rule public MockitoRule rule = MockitoJUnit.rule();
 
     @Test public void should_look_up_words() throws Exception {
         //given
-        willReturn("Java conference").given(wiki).findDescription("JavaOne");
         willReturn("Mocking framework").given(wiki).findDescription("mockito");
 
         //when
@@ -47,6 +46,9 @@ public class SmartDictionaryTest {
 
         //then
         assertEquals("Mocking framework", description);
+
+        verify(wiki).findDescription("mockito");
+        verifyNoMoreInteractions(wiki);
     }
 
     @Test public void should_keep_history() throws Exception {
