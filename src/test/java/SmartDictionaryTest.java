@@ -39,6 +39,7 @@ public class SmartDictionaryTest {
 
     @Test public void should_look_up_words() throws Exception {
         //given
+        willReturn("Java conference").given(wiki).findDescription("JavaOne");
         willReturn("Mocking framework").given(wiki).findDescription("mockito");
 
         //when
