@@ -43,6 +43,9 @@ public class SmartDictionaryTest {
     }
 
     @Test public void should_keep_history() throws Exception {
+        //given
+        willReturn("Mocking framework").given(wiki).findDescription("mockito");
+
         //when
         dictionary.lookUp("mockito");
 
@@ -52,6 +55,7 @@ public class SmartDictionaryTest {
 
     @Test public void should_ignore_history_failures() throws Exception {
         //given
+        willReturn("Mocking framework").given(wiki).findDescription("mockito");
         willThrow(new HistoryFailureException()).given(history).lookUpAttempt("mockito");
 
         //expect no exception thrown
