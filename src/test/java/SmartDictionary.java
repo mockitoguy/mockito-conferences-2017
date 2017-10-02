@@ -8,7 +8,6 @@ public class SmartDictionary {
     }
 
     public String lookUp(String word) {
-        word += "x";
         String description = wiki.findDescription(word);
         try {
             history.lookUpAttempt(word);
