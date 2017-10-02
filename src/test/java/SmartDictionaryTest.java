@@ -1,7 +1,7 @@
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.BDDMockito.willThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -33,7 +33,7 @@ public class SmartDictionaryTest {
 
     @Test public void should_look_up_words() throws Exception {
         //given
-        given(wiki.findDescription("mockito")).willReturn("Mocking framework");
+        willReturn("Mocking framework").given(wiki).findDescription("mockito");
 
         //when
         String description = dictionary.lookUp("mockito");
