@@ -1,9 +1,13 @@
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.BDDMockito.willThrow;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -26,10 +30,11 @@ import static org.mockito.Mockito.verify;
  */
 public class SmartDictionaryTest {
 
-    OnlineWiki wiki = mock(OnlineWiki.class);
+    @Mock OnlineWiki wiki;
+    @Mock DictionaryHistory history;
+    @InjectMocks SmartDictionary dictionary;
 
-    DictionaryHistory history = mock(DictionaryHistory.class);
-    SmartDictionary dictionary = new SmartDictionary(wiki, history);
+    @Rule public MockitoRule rule = MockitoJUnit.rule();
 
     @Test public void should_look_up_words() throws Exception {
         //given
