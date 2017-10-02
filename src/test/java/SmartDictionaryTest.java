@@ -26,7 +26,8 @@ import static org.mockito.Mockito.verify;
  */
 public class SmartDictionaryTest {
 
-    OnlineWiki wiki = mock(OnlineWiki.class);
+    OnlineWiki wiki = mock(OnlineWiki.class, Mocking.strict());
+
     DictionaryHistory history = mock(DictionaryHistory.class);
     SmartDictionary dictionary = new SmartDictionary(wiki, history);
 
