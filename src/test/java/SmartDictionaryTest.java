@@ -6,12 +6,25 @@ import static org.mockito.BDDMockito.willThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+/**
+ * 1. Mistakes that steal productivity
+ *  - change String literal in "should_keep_history", run -> failure easy to debug
+ *  - introduce bug in code (wrong parameter) run "should_keep_history" -> failure easy to debug
+ *  - keep the bug, run "should_look_up_words" -> failure hard to debug
+ * 2. Improve debuggability with Strict mocks
+ *  - add failing answer
+ *  - use and explain 'willReturn' stubbing API
+ *  - demonstrate easier debugging
+ *  - dark side of strict stubs - the need to add unnecessary 'expectations'
+ * 3. Improve debuggability with Mockito v2
+ *  - Add annotations, rule and show warnings
+ *  - Configure the rule to use strict stubbings
+ * 4. Other features of strict stubbing
+ *  - add unused stubbing to "should_look_up_words" - clean code
+ *  - add verifyNoMoreInteractions(wiki) to "should_look_up_words" - DRY
+ *  - can use MockitoJUnitRunner or without rule/runner, too
+ */
 public class SmartDictionaryTest {
-
-    //2 kinds of typos
-    //strict mocks example
-    //v2 - warnings, strict stubs
-    //DRY, detect unused stubs with runner
 
     OnlineWiki wiki = mock(OnlineWiki.class);
     DictionaryHistory history = mock(DictionaryHistory.class);
