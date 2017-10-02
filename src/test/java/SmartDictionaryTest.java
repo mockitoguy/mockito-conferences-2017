@@ -43,7 +43,7 @@ public class SmartDictionaryTest {
 
     @Test public void should_keep_history() throws Exception {
         //when
-        dictionary.lookUp("mockit");
+        dictionary.lookUp("mockito");
 
         //then
         verify(history).lookUpAttempt("mockito");
