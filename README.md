@@ -3,7 +3,6 @@
 This project is used for live coding presentations.
 We want to demonstrate Mockito v2 improvements for productivity and clean tests.
 
-Script:
 1. Opening slides
 2. Video of TDD of the initial set of classes: https://vimeo.com/209683202/
 3. Live coding script: Javadoc for SmartDictionaryTest class
