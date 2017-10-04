@@ -14,7 +14,7 @@ Script:
 **You deserve great tools: Mockito 2 for cleaner tests and enhanced productivity**
 
 * Git branch: javaone
-* Abstract: TODO
+* Abstract: https://www.linkedin.com/pulse/mockito-talk-javaone-2017-clean-tests-szczepan-faber
 * Slides: https://docs.google.com/presentation/d/149mPlyTbHr8hBfMxqIUYtMznG_yZcW1rRB3s_ROe9QY/edit
 * Video: TODO
 
@@ -25,4 +25,4 @@ Script:
 * Git branch: devoxx
 * Abstract: http://cfp.devoxx.us/2017/talk/HCM-2407/Great_tools_for_engineers:_even_cleaner_tests_with_Mockito_2
 * Slides: https://docs.google.com/presentation/d/1ExirjVAZ3-4L8UTbGYlAmOqIKG2m4moTGpSletd_Mug
-* Video: TODO
+* Video: https://www.youtube.com/watch?v=Rl7g0duuDkU
